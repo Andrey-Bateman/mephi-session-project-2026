@@ -1,0 +1,27 @@
+    1  sudo systemctl restart nginx
+    2  sudo curl http://localhost
+    3  sudo systemctl restart nginx
+    4  sudo cat > /etc/nginx/conf.d/mephi.conf << 'EOF'
+    5  server {
+    6      listen 80 default_server;
+    7      root /data/mephi-web;
+    8      index index.html;
+    9  }
+   10  EOF
+   11  sudo sed -i 's|root\s*/usr/share/nginx/html;|root /data/mephi-web;|' /etc/nginx/nginx.conf
+   12  exit
+   13  sudo systemctl restart nginx
+   14  sudo curl http://localhost
+   15  sudo cat > /etc/nginx/conf.d/mephi.conf << 'EOF'
+server {
+    listen 80 default_server;
+    root /data/mephi-web;
+    index index.html;
+}
+EOF
+
+   16  sudo sed -i 's|root\s*/usr/share/nginx/html;|root /data/mephi-web;|' /etc/nginx/nginx.conf
+   17  echo "Hello from Student: M2551019" > /data/mephi-web/index.html
+   18  sudo systemctl restart nginx
+   19  curl http://localhost
+   20  history > ~/project_history.txt
